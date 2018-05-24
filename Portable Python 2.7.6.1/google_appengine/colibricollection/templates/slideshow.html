@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block stylesheet %}
+  <script src="/css.script/jquery-ui.js"></script>
+  <script>
+  var autoplaySpeed = 5000;
+  $( function() {
+    $( "#slider" ).slider({
+      value:2,
+      min: 1,
+      max: 3,
+      step: 1,
+      change: function( event, ui ) {
+		if($('#slideshow-pause-play-button').hasClass('play')){
+			for(i=0;i<currentQueue.length-1;i=i+1){
+				clearTimeout(currentQueue[i]);
+			}
+			currentQueue = [];
+			if($('#slideshow-shrink-enlarge-button').hasClass('shrink')) {
+				var intLeftOver = sliderList.length + (parseInt($('#slideshow-inner-container').css('left'))/Math.max(document.documentElement.clientWidth, window.innerWidth || 0));
+			}
+			else {
+				var intLeftOver = sliderList.length + parseInt($('#slideshow-inner-container').css('left'))/620;
+			}
+			for(i=intLeftOver;i>1;i--){
+					currentQueue.push(setTimeout(autoPlay, i*[10000,5000,3500][ui.value-1]));
+			}
+		}
+		autoplaySpeed = [10000,5000,3500][ui.value-1];
+      }
+    });
+  } );
+  var sliderList = {{main_slideshow.slides | safe}}
+  </script>
+{% endblock %}
+{% block content %} 
+	<div class="main-headers">
+		Slideshow: {{main_slideshow.title}}
+	</div>
+	<div id="slideshow-main-container">
+		<div id="slideshow-left-arrow" class="slideshow-arrow">
+			<img src="/images/prev-arrow.png" alt="prev-arrow" title="Go to previous slide" />
+		</div>
+		<div id="slideshow-content-container" class="center">
+			<div id="slideshow-inner-container" style="width:{{main_slideshow.slides| length *620}}px;">{% for slide in main_slideshow.slides %}<div class="slider"><div class="slideshow-title-overlay">{{slide['title']}} (<a target="_blank" href="{{slide['source']}}" class="main-links">source</a>)</div><a target="_blank" href="{{slide['link']}}"><img src="{{slide['image']}}" /></a></div>{% endfor %}</div>
+		</div>
+		<div id="slideshow-right-arrow" class="slideshow-arrow">
+			<img src="/images/next-arrow.png" alt="next-arrow" title="Go to next slide"/>
+		</div>
+		<div id="slideshow-controls">
+			<div id="slideshow-pause-play-button" class="pause"></div>
+			<div id="slideshow-number"><span id="slideshow-number-current">1</span>/{{main_slideshow.slides| length}}</div>
+			<div id="slideshow-titles">Hide title info</div>
+			<div id="slideshow-speed">
+				slow
+				<div id="slider"></div>
+				fast
+			</div>
+			<div id="slideshow-shrink-enlarge-button" class="enlarge"></div>
+		</div>
+	</div>
+	
+	<div class="main-headers">
+		All Slideshows
+	</div>
+	
+	<div id="slideshow-preview-container">
+		<div id="slideshow-preview-left-arrow" class="slideshow-preview-arrow">
+			<img src="/images/prev-arrow.png" alt="prev-arrow" title="Go to previous preview"/>
+		</div>
+		<div id="slideshow-preview-inner-container" style="width:{{slideshow_num * 175 + ((slideshow_num - 1) * 20)}}px;">
+			{% for slideshow in slideshow_list %}{% if main_slideshow.title != slideshow.title and slideshow.slides != [{}] %}<div class="slideshow-preview-item" style="background: url('{{slideshow.slides[0]['image']}}');background-size: cover;"><a href="{{slideshow.link}}"><div class="slideshow-preview-title" title="Click to watch"><p>{{slideshow.title}}</p></div></a></div>{% endif %}{% endfor %}
+		</div>
+		<div id="slideshow-preview-right-arrow" class="slideshow-preview-arrow">
+			<img src="/images/next-arrow.png" alt="next-arrow" title="Go to next preview"/>
+		</div>
+	</div>
+
+{% endblock %}

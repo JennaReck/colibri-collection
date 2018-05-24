@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %} 
+	
+	<div id="sort-dropdown-container">
+		Index sorted by: 
+		<form action="/index" method="GET">
+			<select name="sort-type" onchange="this.form.submit()">
+				<option value="alphabetical" {% if sort_type == "alphabetical" %}selected="selected"{% endif %}>A-Z</option>
+				<option value="smallest-to-largest" {% if sort_type == "smallest-to-largest" %}selected="selected"{% endif %}>Smallest to largest</option>
+				<option value="largest-to-smallest" {% if sort_type == "largest-to-smallest" %}selected="selected"{% endif %}>Largest to smallest</option>
+				<option value="date-discovered" {% if sort_type == "date-discovered" %}selected="selected"{% endif %}>Date discovered</option>
+				<option value="subfamily-genus" {% if sort_type == "subfamily-genus" %}selected="selected"{% endif %}>Subfamily and genus</option>
+				<option value="rarity" {% if sort_type == "rarity" %}selected="selected"{% endif %}>Rarity/conservation status</option>
+			</select>
+			<noscript><input type="submit" value="Go"></noscript>
+		</form>
+		<br />
+		<a href="javascript:toggleThumbnails()" id="sort-thumbnail-button" class="main-links">Hide thumbnails</a>
+	</div>
+	<div class="clear"></div>
+	
+	{{content_html|safe}}
+
+{% endblock %}

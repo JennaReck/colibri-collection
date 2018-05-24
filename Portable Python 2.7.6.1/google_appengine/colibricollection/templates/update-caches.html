@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block stylesheet %}
+
+	<link rel="stylesheet" href="/css.script/uploadstyle.css" />
+
+{% endblock %}
+
+{% block content %} 
+	
+	<div class="admin-panel-linkback">
+		<a class="main-links" href="/admin-panel">Back to admin panel</a>
+	</div>
+	<div class="main-headers">Update Caches</div>
+
+	<form action="/update-caches" method="POST">
+		<button name="cache-type" type="submit" value="hum-cache">Update hum cache (sort/index/slideshow/etc.)</button>
+		<br />
+		<button name="cache-type" type="submit" value="featured-hum-cache">Update featured hum cache</button>
+		<br />
+		<button name="cache-type" type="submit" value="resources-cache">Update other resources cache</button>
+		<br />
+		<button name="cache-type" type="submit" value="every-cache">Update all caches</button>	
+	</form>
+	{% if success == "y" %}
+		<div class="center">Successfully updated cache!</div>
+	{% endif %}
+{% endblock %}

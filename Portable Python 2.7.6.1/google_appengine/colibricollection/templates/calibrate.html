@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %} 
+	
+	<div class="main-headers">Screen Calibration</div>
+	<p>
+		<strong>Status:</strong>
+		<br />
+		<span id="calibrate-status">{%if scale_ratio%}Your screen is currently calibrated.{% else %}Your screen is currently not calibrated.{% endif %}</span>
+	</p>
+	<p>
+		<strong>How calibration works:</strong>
+		<br />
+		Every screen has a different pixel density, which means true scale images can only be shown once the pixel-per-inch (PPI) ratio is known. This page will help you quickly calibrate your screen to show the correct scale by calculating that ratio.
+	</p>
+	<p>
+		You should only have to calibrate this once. 
+	</p>
+	<p>
+		After calibration, your screen will continue to display the scale correctly unless you:
+		<ol type="A">
+			<li>
+				Use a different browser. Since screen calibration relies on browser cookies, only the originally calibrated browser will scale correctly unless you calibrate the new browser as well.
+			</li>
+			<li>
+				Switch computers. Each computer/laptop screen is different and will have to be calibrated separately.
+			</li>
+			<li>
+				Clear your browser cookies manually.
+			</li>
+		</ol>
+	</p>
+	<p>
+		<strong>Instructions:</strong>
+		<br />
+		To calibrate your screen, pick one of the two calibration measures below. 
+	</p>
+	<p>
+		<strong>Method #1:</strong>
+		<br />
+		Hold up a penny to the box on the right and drag that box until it fits the penny perfectly. 
+	</p>
+	<p>
+		<strong>Method #2:</strong>
+		<br />
+		Hold up a ruler to the box on the left and drag that box until it matches a width of 1 inch. 
+	</p>
+	<p>
+		Once either of the boxes has been dragged to the correct size, click 'calibrate' below it. The test image beneath will then re-size to test your screen calibration, and that's it!
+	</p>
+	<div class="center">
+		<div class="calibrate-method-container">
+			<div id="method1"></div>
+				<button onclick="calibrateScale('#method1',88.5)">Calibrate</button>
+		</div>
+		<div class="calibrate-method-container">
+			<div id="method2"></div>
+				<button onclick="calibrateScale('#method2',118)">Calibrate</button>
+		</div>
+	</div>
+	<img src="/images/hummingbirdscale.png" id="calibrate-test-img" alt="Hummingbird Scale" title="Rufous Hummingbird scale test" />
+	<div id="calibrate-success" class="center"></div>
+
+{% endblock %}

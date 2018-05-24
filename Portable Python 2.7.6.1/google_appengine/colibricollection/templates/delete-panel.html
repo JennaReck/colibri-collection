@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block stylesheet %}
+
+	<link rel="stylesheet" href="/css.script/uploadstyle.css" />
+
+{% endblock %}
+
+{% block content %} 
+	
+	<div class="admin-panel-linkback">
+		<a class="main-links" href="/admin-panel">Back to admin panel</a>
+	</div>
+	<div class="main-headers">Delete Panel</div>
+	<div class="main-subheaders">Hummingbirds</div>
+	<form action="/delete-panel" method="POST">
+		<select name="delete-hum">
+			{% for hum in hum_list %}
+			<option value="{{hum.key.id()}}">{{hum.common_name}}</option>
+			{% endfor %}
+		</select>
+		<input type="submit" value="Delete" />
+	</form>
+	
+	<div class="main-subheaders">Resources</div>
+	<form action="/delete-panel" method="POST">
+		<select name="delete-resource">
+			{% for resource in resources %}
+			<option value="{{resource.key.id()}}">{{resource.link}}</option>
+			{% endfor %}
+		</select>
+		<input type="submit" value="Delete" />
+	</form>
+	
+	<div class="main-subheaders">Pics</div>
+	<form action="/delete-panel" method="GET">
+		<select name="view-hum">
+			{% for hum in hum_list %}
+			<option value="{{hum.key.id()}}" {% if view_hum.key.id() == hum.key.id() %}selected="selected"{% endif %}>{{hum.common_name}}</option>
+			{% endfor %}
+		</select>
+		<input type="submit" value="View hum pics" />
+	</form>
+	
+	{% if view_hum %}
+		<form action="/delete-panel" method="POST">
+			<div class="delete-panel-pic-container">
+				<img src="{{view_hum.thumbnail.link}}" alt="thumbnail" />
+				<input type="checkbox" name="thumbnail" value="view_hum.thumbnail.key.id()" />
+			</div>
+			{% for pic in view_hum.scale_pics %}
+				<div class="delete-panel-pic-container">
+					<img src="{{pic.link}}" alt="scale pic" />
+					<input type="checkbox" name="scale-pic" value="pic.key.id()" />
+				</div>
+			{% endfor %}
+			{% for pic in view_hum.reg_pics %}
+				<div class="delete-panel-pic-container">
+					<img src="{{pic.link}}" alt="reg pic" />
+					<input type="checkbox" name="reg-pic" value="pic.key.id()" />
+				</div>
+			{% endfor %}
+			<div class="delete-panel-pic-container">
+				<img src="{{view_hum.flower_pic.link}}" alt="flower pic" />
+				<input type="checkbox" name="flower-pic" value="view_hum.flower_pic.key.id()" />
+			</div>
+			<input type="submit" value="Delete selected" />
+		</form>
+	{% endif %}
+	{% if success == "y" %}
+		<div class="center">Successfully deleted!</div>
+	{% endif %}
+{% endblock %}

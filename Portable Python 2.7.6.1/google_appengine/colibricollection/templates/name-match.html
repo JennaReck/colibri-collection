@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block stylesheet %} <script>var gameList = {{game_list | safe}};var currentHighscore = {{highscore}};var currentLevel = "{{level}}";</script> {% endblock %}
+
+{% block content %} 
+	<p class="extra-top-info">
+		How well do you know your hummingbirds? Match the correct name to the picture.
+	</p>
+	
+	<div id="sort-dropdown-container">
+		Difficulty:
+		<form action="/name-match" method="GET">
+			<select name="level" onchange="this.form.submit()">
+				<option value="easy" {% if level == "easy" %}selected="selected"{% endif %}>Easy</option>
+				<option value="medium" {% if level == "medium" %}selected="selected"{% endif %}>Medium</option>
+				<option value="hard" {% if level == "hard" %}selected="selected"{% endif %}>Hard</option>
+			</select>
+			<noscript><input type="submit" value="Go"></noscript>
+		</form>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="main-headers">Name Match Game</div>
+	<span class="match-streak-and-highscore" id="match-streak-container">Current streak: <span id="match-streak">0</span></span>
+	<div class="match-streak-and-highscore">Current highscore for {{level}} difficulty: {{highscore}}</div>
+	<div id="match-pic-container">
+		<span class="center-vertical"></span>
+		<img src="{{game_list[0]['link']}}" id="game-picture" name="{{game_list[0]['name']}}" class="match-pics" alt="Name match picture" />
+	</div>
+	
+		<ol type="A" id="match-list">
+			<li onclick="javascript:chooseAnswer('#answer-result1', '{{game_list[0]['optionA']}}');" id="answer1">{{game_list[0]["optionA"]}} <span id="answer-result1"></span></li>
+			<li onclick="javascript:chooseAnswer('#answer-result2', '{{game_list[0]['optionB']}}');" id="answer2">{{game_list[0]["optionB"]}} <span id="answer-result2"></span></li>
+			<li onclick="javascript:chooseAnswer('#answer-result3', '{{game_list[0]['optionC']}}');" id="answer3">{{game_list[0]["optionC"]}} <span id="answer-result3"></span></li>
+			<li onclick="javascript:chooseAnswer('#answer-result4', '{{game_list[0]['optionD']}}');" id="answer4">{{game_list[0]["optionD"]}} <span id="answer-result4"></span></li>
+		</ol>
+	<div id="game-results"></div>
+
+{% endblock %}

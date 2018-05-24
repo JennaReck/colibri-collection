@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block pageoverlay %}
+
+	<div id="species-whole-overlay" class="hidden">
+		{% for pic in hum.reg_pics %}
+			<div id="speciesid{{loop.index}}" class="hidden">
+				<a href="{{pic.source}}" title="Click to view source">
+					<img src="{{pic.link}}" class="species-pictures-large" alt="{{pic.title}}" />
+				</a>
+				<div class="center overlay-text">
+					{{pic.title}}
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+	
+{% endblock %}
+
+{% block content %} 
+	
+	<section>
+		<div class="main-headers">{{hum.common_name}}<a href="javascript:toggleFavorites({{hum.key.id()}})"><div id="fav-button" class="{% if not is_favorite %}not-{% endif %}fav"></div></a></div>
+		<table>
+			<tr>
+				<td class="species-table-labels">Binomial name:</td>
+				<td>{{hum.binomial_name}}</td>
+			</tr>
+			<tr>
+				<td class="species-table-labels">Length (male):</td>
+				<td>{{hum.male_length}} inches</td>
+			</tr>
+			<tr>
+				<td class="species-table-labels">Length (female):</td>
+				<td>{{hum.female_length}} inches</td>
+			</tr>
+			<tr>
+				<td class="species-table-labels">Location:</td>
+				<td>{{hum.locations|join(', ')}}</td>
+			</tr>
+			<tr>
+				<td class="species-table-labels">Conservation status:</td>
+				<td>{{["EX (extinct)","EW (extinct in the wild)","CR (critically endangered)","EN (endangered)","VU (vulnerable)","NT (near threatened)","LC (least concerned)", "DD (data deficient)"][hum.rarity_rank-1]}}</td>
+			</tr>
+			<tr>
+				<td class="species-table-labels">Discovery date:</td>
+				<td>{{hum.discovery_date}}</td>
+			</tr>
+		</table>
+	</section>
+	<section>
+		<div class="main-headers">Scale{% if not scale_ratio %}<div class="main-headers-right-link main-links">(<a href="/calibrate" class="main-links" title="Your screen is currently not calibrated. For true scaled pictures, please calibrate your screen.">set screen calibration</a>)</div>{% endif %}</div>
+		{% for pic in hum.scale_pics %}
+			<div class="species-scaled-containers" style="width:{% if scale_ratio %}{{pic.scale_size * scale_ratio + 40}}{% else %}{{pic.scale_size + 40}}{% endif %}px;">
+				<img src="{{pic.link}}" width="{% if scale_ratio %}{{pic.scale_size * scale_ratio}}{% else %}{{pic.scale_size}}{% endif %}px" class="species-scaled-pic" alt="{{pic.title}}" />
+				<div class="center">
+				{{pic.title}} <span class="main-links">(<a href="{{pic.source}}" class="main-links">source</a>)</span></div>
+			</div>
+		{% endfor %}
+		{{hum.description|safe}}
+	</section>
+	<section>
+		<div class="main-headers">Nectar sources</div>
+		{{hum.flower_description|safe}}
+		<div class="species-flower-container">
+			<img src="{{hum.flower_pic.link}}" class="species-flower-pic" alt="{{hum.flower_pic.title}}" />
+			<div class="center species-flower-title">
+				{{hum.flower_pic.title}} <br /><span class="main-links">(<a href="{{hum.flower_pic.source}}" class="main-links">source</a>)</span>
+			</div>
+		</div>
+	</section>
+	<section>
+		<div class="main-headers">Pictures</div>
+		{% for pic in hum.reg_pics %}
+			<div class="species-pictures-containers">
+				<a href="javascript:toggleSpeciesOverlay('speciesid{{loop.index}}')"><div class="species-pictures-overlay"><span class="species-pictures-overlay-text overlay-text">Enlarge image</span></div></a><img src="{{pic.link}}" class="species-pictures" alt="{{pic.title}}" title="click to enlarge" />
+			</div>
+		{% endfor %}
+		
+		<div class="center main-links">(<a href="https://www.google.com/search?site=imghp&tbm=isch&q={{hum.common_name|urllib_quote_plus}}" target="_blank" class="main-links">view more images on Google</a>)</div>
+	</section>
+	<section>
+		<div class="main-headers">Videos</div>
+		{% for video in hum.videos %}
+			{{video|safe}}
+		{% endfor %}
+		{% if not hum.videos %}
+			No videos are currently available.
+		{% endif %}
+	</section>
+	<section>
+		<div class="main-headers">References</div>
+		<div id="species-reference-container" class="hidden">
+			<ol>
+				{% for reference in hum.references %}
+					<li>
+						<a href="{{reference}}">{{reference}}</a>
+					</li>
+				{% endfor %}
+			</ol>
+		</div>
+		<div class="main-links center">
+			(<a id="species-references-button" class="main-links" href="javascript:toggleReferences();">show</a>)
+		</div>
+	</section>
+
+{% endblock %}

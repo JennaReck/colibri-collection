@@ -1,0 +1,48 @@
+/* ADMIN PANEL PAGE */
+
+
+/* UPLOAD HUMMINGBIRD SPECIES PAGE */
+textarea {
+	width: 400px;
+	height: 100px;
+}
+label {
+	padding: 0 10px 0 0;
+}
+td {
+	padding: 5px 0;
+}
+input[type="submit"], button {
+	margin: 20px 0 0 0;
+}
+button + button{
+	margin: 20px 0 0 10px;
+}
+li {
+	padding: 0 0 5px 0;
+}
+select {
+	margin: 0 10px 30px 0;
+	width: 150px;
+}
+.main-table {
+	margin: 0 0 0 20px;
+}
+#color-form td {
+	padding: 0;
+}
+.admin-panel-linkback {
+	display: inline-block;
+	margin: 0 0 20px 0;
+}
+.table-input {
+	width: 250px;
+}
+
+/* EDIT HUMMINGBIRD SPECIES PAGE */
+
+
+/* ADD PICTURES PAGE */
+
+
+/* UPLOAD RESOURCES PAGE */

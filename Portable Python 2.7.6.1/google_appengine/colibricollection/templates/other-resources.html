@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %} 
+	
+	<div class="main-headers">Other Resources</div>
+	<div class="main-subheaders">Articles/Blogs</div>
+	<ul>
+		{% for resource in articles_blogs %}
+			<li><a href="{{resource.link}}" target="_blank">{{resource.title}}</a></li>
+		{% endfor %}
+	</ul>
+	
+	<div class="main-subheaders">Images/Graphics</div>
+	<ul>
+		{% for resource in images_graphics %}
+			<li><a href="{{resource.link}}" target="_blank">{{resource.title}}</a></li>
+		{% endfor %}
+	</ul>
+	
+	<div class="main-subheaders">Photographer Websites</div>
+	<ul>
+		{% for resource in photographer_websites %}
+			<li><a href="{{resource.link}}" target="_blank">{{resource.title}}</a></li>
+		{% endfor %}
+	</ul>
+	
+	<div class="main-subheaders">Photos</div>
+	<ul>
+		{% for resource in photos %}
+			<li><a href="{{resource.link}}" target="_blank">{{resource.title}}</a></li>
+		{% endfor %}
+	</ul>
+	
+	<div class="main-subheaders">Videos</div>
+	<ul>
+		{% for resource in videos %}
+			<li><a href="{{resource.link}}" target="_blank">{{resource.title}}</a></li>
+		{% endfor %}
+	</ul>
+	
+	<div class="main-subheaders">Wallpapers</div>
+	<ul>
+		{% for resource in wallpapers %}
+			<li><a href="{{resource.link}}" target="_blank">{{resource.title}}</a></li>
+		{% endfor %}
+	</ul>
+	
+	<div class="main-subheaders">Wikis/Information Resources</div>
+	<ul>
+		{% for resource in wikis_information_resources %}
+			<li><a href="{{resource.link}}" target="_blank">{{resource.title}}</a></li>
+		{% endfor %}
+	</ul>
+	
+	<div class="main-subheaders">Misc.</div>
+	<ul>
+		{% for resource in misc %}
+			<li><a href="{{resource.link}}" target="_blank">{{resource.title}}</a></li>
+		{% endfor %}
+	</ul>
+	
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block stylesheet %}
+
+	<link rel="stylesheet" href="/css.script/uploadstyle.css" />
+
+{% endblock %}
+
+{% block content %} 
+	
+	<div class="admin-panel-linkback">
+		<a class="main-links" href="/admin-panel">Back to admin panel</a>
+	</div>
+	<div class="main-headers">Upload Pictures</div>
+
+	<form action="{{upload_url}}" method="POST" enctype="multipart/form-data">
+
+		<table class="main-table">
+			<tr>
+				<td>
+					<label for="hum-id">Hum ID:</label>
+				</td>
+				<td>
+					<input type="text" name="hum-id" id="hum-id" class="table-input" value="{{hum_id}}" />
+				</td>
+			</tr>
+			<tr>	
+				<td>
+					<label>Sex:</label>
+				</td>
+				<td>
+					<input type="radio" name="male" value="True" /> Male
+					<br />
+					<input type="radio" name="male" value="False" /> Female
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="source">Source (pic source link):</label>
+				</td>
+				<td>
+					<input type="text" name="source" id="source" class="table-input" />
+				</td>
+			</tr>
+			<tr>	
+				<td colspan="2">
+					<label for="title">Title (short, include hum name/sex/age/other info if applicable):</label>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<textarea name="title" id="title"></textarea>
+				</td>
+			</tr>
+			<tr>	
+				<td colspan="2">
+					<label>Pic type:</label>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input type="radio" name="pic-type" value="thumbnail" /> Thumbnail
+					<br />
+					<input type="radio" name="pic-type" value="scale_pics" /> Scale pic
+					<br />
+					<input type="radio" name="pic-type" value="reg_pics" /> Regular pic
+					<br />
+					<input type="radio" name="pic-type" value="flower_pic" /> Flower pic
+					<br />
+				</td>
+			</tr>
+			<tr>	
+				<td>
+					<label for="scale-size">Scale size (96px per inch ratio, only for scale pics, for img width):</label>
+				</td>
+			
+				<td>
+					<input type="text" name="scale-size" id="scale-size" class="table-input" />
+				</td>
+			</tr>
+			<tr>	
+				<td colspan="2">
+					<label for="image">Pic file:</label>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input type="file" name="image" id="image" class="table-input" />
+				</td>
+			</tr>
+			<tr>
+				<td class="center" colspan="2">
+					<button name="redirect-location" type="submit" value="continue">Submit and add more</button>
+					<button name="redirect-location" type="submit" value="hum">Submit and view hum</button>
+				</td>
+			</tr>
+		</table>
+		
+	</form>
+
+{% endblock %}

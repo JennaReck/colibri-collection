@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %} 
+	
+	<p class="extra-top-info">
+		This page keeps track of your hummingbird species checklist, making it easier to see which hummingbird pages you have and haven't visited yet.
+	</p>
+	
+	<div id="sort-dropdown-container">
+		Sort by:
+		<form action="/checklist" method="GET">
+			<select name="sort-type" onchange="this.form.submit()">
+				<option value="unchecked" {% if sort_type == "unchecked" %}selected="selected"{% endif %}>Unvisited</option>
+				<option value="checked" {% if sort_type == "checked" %}selected="selected"{% endif %}>Visited</option>
+				<option value="both" {% if sort_type == "both" %}selected="selected"{% endif %}>Both</option>
+			</select>
+			<noscript><input type="submit" value="Go"></noscript>
+		</form>
+		<a href="javascript:clearChecklist()" class="main-links">Clear checklist</a>
+		<a href="javascript:toggleThumbnails()" class="main-links">Hide thumbnails</a>
+	</div>
+	<div class="clear"></div>
+	
+	{{content_html|safe}}
+
+{% endblock %}

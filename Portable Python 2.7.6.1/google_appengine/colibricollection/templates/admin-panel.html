@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block stylesheet %}
+
+	<link rel="stylesheet" href="/css.script/uploadstyle.css" />
+
+{% endblock %}
+
+{% block content %} 
+	
+	<div class="main-headers">Admin Panel</div>
+	<ul>
+		<li><a href="/upload-hum" class="main-links">Upload Hum</a></li>
+		<li><a href="/color-gen" class="main-links">Color Generator</a></li>
+		<li><a href="/scale-gen" class="main-links">Scale Generator</a></li>
+		<li><a href="/upload-resources" class="main-links">Upload Resources</a></li>
+		<li><a href="/upload-videos" class="main-links">Upload Videos</a></li>
+	</ul>
+	<form action="/logout">
+		<input type="submit" value="Logout" />
+	</form>
+
+{% endblock %}

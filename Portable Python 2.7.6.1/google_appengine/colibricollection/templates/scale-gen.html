@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block stylesheet %}
+
+	<link rel="stylesheet" href="/css.script/uploadstyle.css" />
+	<script>
+		$(document).ready(function() {
+			var h_image = new Image();
+			h_image.src = $('#h-image').html();
+			h_image.onload = function(){
+				$('#img-width').html(h_image.naturalWidth);
+			}
+			$('#calculate-size').click('click', function() {
+				$('#px-output').html($('#resize-container').width());
+			});
+			$('#next-4').click(function(e) {
+			e.preventDefault();
+			window.open('/scale-gen?humnumber={{next_hum_num+1}}');
+			window.open('/scale-gen?humnumber={{next_hum_num+2}}');
+			window.open('/scale-gen?humnumber={{next_hum_num+3}}');
+			window.open('/scale-gen?humnumber={{next_hum_num+4}}');
+			});
+		});
+	</script>
+
+{% endblock %}
+
+{% block content %} 
+	<b>Filename:</b> <span id="h-image">{{hum_image}}</span><br>
+	<b>Hum inches:</b> {{hum_inches}}<br>
+	<b>Image width:</b> <span id="img-width"></span><br>
+	<textarea id="resize-container" style='background-color:pink;background-image:url("{{hum_image}}");background-size:contain;background-repeat:no-repeat;resize:both;width:10px;'></textarea><br>
+	<textarea id="px-output" style="height:50px;"></textarea><br>
+	<button id="calculate-size">Calculate</button> <a href="{{next_hum}}"><button>Next</button></a> <button id="next-4">Next 4</button>
+{% endblock %}

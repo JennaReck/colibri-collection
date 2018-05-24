@@ -1,0 +1,31 @@
+Setup Instructions:
+
+ONLY PROCEED IF USING WINDOWS. This won't work on a Mac/Linux/Ubuntu/etc.
+
+If the computer/laptop/tablet has never accessed Colibri Collection before, do the following:
+
+1. Click "Install Colibri Collection Configuration Part 1" followed by "Part 2" and allow your device to run it as Administrator by selecting the "Yes" option when it prompts "Do you want to allow the following program to make changes to this computer?".
+
+2. Click the "Enter Colibri Collection" icon to open it in your default browser. Don't worry if it shows an error at first. It takes the web server a few moments to start running the website, but the browser should automatically refresh and load the site within 30-40 seconds usually. You can also manually refresh the browser page.
+
+3. Login.
+
+If the computer/laptop/tablet HAS accessed Colibri Collection before, skip the "Install Colibri Collection Configuration" step and just click the "Enter Colibri Collection" icon and login. 
+
+Re-configuring the device to work with Colibri Collection won't cause any harm, but it's not recommended to run this configuration more than once on a device.
+
+Exit Instructions:
+
+You may notice a Windows Command Line window minimized at the bottom of your screen after entering Colibri Collection. This is normal, as it is part of the web server commands running behind the scenes.
+
+When you're done viewing Colibri Collection, simply close the browser/tab along with the minimized Windows Command Line window. Closing it will also stop the web server process so it won't continue in the background.
+
+Before removing the USB, please:
+
+1. Make sure you closed the minimized Windows Command Line window.
+2. Right click (or left click depending on your configuration) the USB/Storage device icon in the bottom right corner of the Windows Task bar and select "Eject", "Safely remove hardware", or whatever your Windows version states.
+
+Removing the USB before doing those two steps might not break anything, but it's safer to do those to prevent possibly corrupting any files.
+
+FINAL STEP:
+Have fun!

@@ -1,0 +1,1 @@
+xcopy ccicon.ico %public% /HY

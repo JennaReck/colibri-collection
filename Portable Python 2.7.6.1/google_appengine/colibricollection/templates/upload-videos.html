@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block stylesheet %}
+
+	<link rel="stylesheet" href="/css.script/uploadstyle.css" />
+
+{% endblock %}
+
+{% block content %} 
+	
+	<div class="admin-panel-linkback">
+		<a class="main-links" href="/admin-panel">Back to admin panel</a>
+	</div>
+
+	<div class="main-headers">Upload Videos</div>
+
+	<form action="/upload-videos" method="POST" enctype="multipart/form-data">
+
+		<table class="main-table">
+			<tr>
+				<td>
+					<label for="video-title">Video title (including year):</label>
+				</td>
+		
+				<td>
+					<input type="text" name="video-title" id="video-title" class="table-input"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="css-id">CSS ID (hum-video-title):</label>
+				</td>
+		
+				<td>
+					<input type="text" name="css-id" id="css-id" class="table-input"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="video-synopsis">Video synopsis (including paragraph tags):</label>
+				</td>
+		
+				<td>
+					<input type="text" name="video-synopsis" id="video-synopsis" class="table-input"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="video-source">Video source (company/channel/production agency):</label>
+				</td>
+		
+				<td>
+					<input type="text" name="video-source" id="video-source" class="table-input"/>
+				</td>
+			</tr>
+			<tr>	
+				<td colspan="2">
+					<label for="video-link">Video link (name only, /v-resources/ will be added):</label>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input type="text" name="video-link" id="video-link" class="table-input" />
+				</td>
+			</tr>
+			<tr>	
+				<td colspan="2">
+					<label for="video-image">Video image (name only, /v-resources/ will be added):</label>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input type="text" name="video-image" id="video-image" class="table-input" />
+				</td>
+			</tr>
+			<tr>
+				<td class="center" colspan="2">
+					<input type="submit" value="Submit" />
+				</td>
+			</tr>
+		</table>
+		
+	</form>
+	
+	
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %} 
+
+	<div id="front-welcome-container">
+		<div class="main-headers">Welcome</div>
+			<p>Welcome to Colibri Collection!</p>
+			<p>As the name suggests, Colibri Collection is a collection of all 342 hummingbird species with detailed descriptions, scaled images, and more.</p>
+			<p>You can browse the collection alphabetically on the index page, view a random species, or sort by any number of things such as keywords, color, or location.</p>
+			<p>For more details about the making and purpose of Colibri Collection, check out the <a href="/about" class="main-links">about page</a>.</p>
+			<p>Enjoy the information, photos, and other features!</p>
+	</div>
+	
+	<div id="front-featured-container">
+		<div class="main-headers">Featured Hummingbird</div>
+		<a href="{{featured_hummingbird.link}}">
+			<img src="{{featured_hummingbird.reg_pics[0].link}}" id="front-featured-hum-pic" alt="{{featured_hummingbird.reg_pics[0].title}}" title="{{featured_hummingbird.reg_pics[0].title}}" />
+		</a>
+		{{featured_hummingbird.description | strip_p_tags | truncate(200, True)}} <a href="{{featured_hummingbird.link}}" class="main-links">read more</a>
+	</div>
+	
+	<div id="front-what-to-do-container">
+		<div class="main-headers">What to Do</div>
+			<p>Colibri Collection isn't just a database of all hummingbird species, it also has many other fun things to check out:</p>
+			<ul>
+				<li><a href="/compare" class="main-links">Compare</a> species using the scaled images</li>
+				<li>View your <a href="/checklist" class="main-links">checklist</a> and collect 'em all</li>
+				<li>Add species to your <a href="/favorites" class="main-links">favorites</a> to save them</li>
+				<li>View some <a href="/slideshow" class="main-links">slideshows</a> of a variety of hummingbird categories</li>
+				<li>Kick back and watch some hummingbird <a href="/videos" class="main-links">videos</a></li>
+				<li>Feeling knowledgable? Test your skills in the <a href="/name-match" class="main-links">name match</a> game</li>
+			</ul>
+			<p>If you run out of things to do, feel free to browse the <a href="/other-resources" class="main-links">other resources</a> too.</p>
+	</div>
+	
+
+{% endblock %}

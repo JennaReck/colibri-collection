@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %} 
+	<p class="extra-top-info">
+		This page keeps track of your favorite hummingbird species. You can add or remove any species by clicking on the favorite (heart) icon beside the name. Your favorites list will stay saved across all computers and browsers.
+	</p>
+	
+	<div id="sort-dropdown-container">
+		Sort by:
+		<form action="/favorites" method="GET">
+			<select name="sort-type" onchange="this.form.submit()">
+				<option value="alphabetical" {% if sort_type == "alphabetical" %}selected="selected"{% endif %}>A-Z</option>
+				<option value="recent" {% if sort_type == "recent" %}selected="selected"{% endif %}>Most recently favorited</option>
+			</select>
+			<noscript><input type="submit" value="Go"></noscript>
+		</form>
+		<a href="javascript:clearFavorites()" class="main-links">Clear favorites</a>
+		<a href="javascript:toggleThumbnails()" class="main-links">Hide thumbnails</a>
+	</div>
+	<div class="clear"></div>
+	<div class="main-headers">Favorites</div>
+	{% if content_html %}
+		{{content_html|safe}}
+	{% else %}
+		Oops, it looks like you haven't added any hummingbirds to your favorites yet. Why don't you browse around the species index and add some?
+	{% endif %}
+{% endblock %}

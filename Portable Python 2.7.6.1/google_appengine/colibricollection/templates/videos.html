@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %} 
+	
+	<div class="main-headers">Videos</div>
+	<b>Table of contents:</b>
+	<ul id="videos-table-of-contents">
+	{% for video in video_list %}
+		<li><a href="#{{video.css_ID}}">{{video.title}}</a></li>
+	{% endfor %}
+	</ul>
+	{% for video in video_list %}
+		<div id="{{video.css_ID}}" class="main-headers">{{video.title}}</div>
+		<div class="center">
+			<a target="_blank" href="{{video.link}}"><img src="{{video.image}}" title="Click to watch in a new window" alt="{{video.title}}" /></a>
+		</div>
+		<p><b>Synopsis:</b></p>
+		{{video.synopsis | safe}}
+		<div class="center">
+			<a class="main-links" href="{{video.source}}">(Source)</a>
+		</div>
+		{% if not loop.last %}
+			<br>
+			<br>
+		{% endif %}
+	{% endfor %}
+
+{% endblock %}

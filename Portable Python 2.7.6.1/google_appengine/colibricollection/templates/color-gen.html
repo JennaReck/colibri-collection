@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block stylesheet %}
+
+	<link rel="stylesheet" href="/css.script/uploadstyle.css" />
+
+{% endblock %}
+
+{% block content %} 
+	<form action="/color-gen" method="POST" enctype="multipart/form-data">
+		<table>
+			<tr>	
+				<td colspan="2">
+					<label>Colors:</label>
+				</td>
+			</tr>
+			<tr>
+				<td id="color-form" colspan="2">
+					<input type="checkbox" id="checkbox-yellow" name="colors" value="yellow" {% if "yellow" in hum.colors %}checked="checked"{% endif %} />
+					<input type="checkbox" id="checkbox-orange" name="colors" value="orange" {% if "orange" in hum.colors %}checked="checked"{% endif %} />
+					<input type="checkbox" id="checkbox-red" name="colors" value="red" {% if "red" in hum.colors %}checked="checked"{% endif %} />
+					<input type="checkbox" id="checkbox-pink" name="colors" value="pink" {% if "pink" in hum.colors %}checked="checked"{% endif %} />
+					<input type="checkbox" id="checkbox-ltgreen" name="colors" value="ltgreen" {% if "ltgreen" in hum.colors %}checked="checked"{% endif %} />
+					<input type="checkbox" id="checkbox-turquoise" name="colors" value="turquoise" {% if "turquoise" in hum.colors %}checked="checked"{% endif %} />
+					<input type="checkbox" id="checkbox-blue" name="colors" value="blue" {% if "blue" in hum.colors %}checked="checked"{% endif %} />
+					<input type="checkbox" id="checkbox-purple" name="colors" value="purple" {% if "purple" in hum.colors %}checked="checked"{% endif %} />
+					<input type="checkbox" id="checkbox-green" name="colors" value="green" {% if "green" in hum.colors %}checked="checked"{% endif %} />
+					<input type="checkbox" id="checkbox-brown" name="colors" value="brown" {% if "brown" in hum.colors %}checked="checked"{% endif %} />
+					<input type="checkbox" id="checkbox-grey" name="colors" value="grey" {% if "grey" in hum.colors %}checked="checked"{% endif %} />
+					<input type="checkbox" id="checkbox-rainbow" name="colors" value="rainbow" {% if "rainbow" in hum.colors %}checked="checked"{% endif %} />
+					<input type="checkbox" id="checkbox-white" name="colors" value="white" {% if "white" in hum.colors %}checked="checked"{% endif %} />
+					<input type="checkbox" id="checkbox-black" name="colors" value="black" {% if "black" in hum.colors %}checked="checked"{% endif %} />
+					<input type="checkbox" id="checkbox-matte" name="colors" value="matte" {% if "matte" in hum.colors %}checked="checked"{% endif %} />
+					<input type="checkbox" id="checkbox-iridescent" name="colors" value="iridescent" {% if "iridescent" in hum.colors %}checked="checked"{% endif %} />
+					<table id="color-table" cellspacing="10">
+						<tr>
+							<td id="yellow" title="yellow" {% if "yellow" in hum.colors %}class="selected"{% endif %}> 
+							</td>
+							<td id="orange" title="orange" {% if "orange" in hum.colors %}class="selected"{% endif %}>
+							</td>
+							<td id="red" title="red" {% if "red" in hum.colors %}class="selected"{% endif %}>
+							</td>
+							<td id="pink" title="pink" {% if "pink" in hum.colors %}class="selected"{% endif %}>
+							</td>
+						</tr>
+						<tr>
+							<td id="ltgreen" title="light green" {% if "ltgreen" in hum.colors %}class="selected"{% endif %}>
+							</td>
+							<td id="turquoise" title="turquoise" {% if "turquoise" in hum.colors %}class="selected"{% endif %}>
+							</td>
+							<td id="blue" title="blue" {% if "blue" in hum.colors %}class="selected"{% endif %}>
+							</td>
+							<td id="purple" title="purple" {% if "purple" in hum.colors %}class="selected"{% endif %}>
+							</td>
+						</tr>
+						<tr>
+							<td id="green" title="green" {% if "green" in hum.colors %}class="selected"{% endif %}>
+							</td>
+							<td id="brown" title="brown" {% if "brown" in hum.colors %}class="selected"{% endif %}>
+							</td>
+							<td id="grey" title="grey" {% if "grey" in hum.colors %}class="selected"{% endif %}>
+							</td>
+							<td id="rainbow" title="multi-color" {% if "rainbow" in hum.colors %}class="selected"{% endif %}>
+							</td>
+						</tr>
+						<tr>
+							<td id="white" title="white" {% if "white" in hum.colors %}class="selected"{% endif %}>
+							</td>
+							<td id="black" title="black" {% if "black" in hum.colors %}class="selected"{% endif %}>
+							</td>
+							<td id="matte" title="matte" {% if "matte" in hum.colors %}class="selected"{% endif %}>
+							</td>
+							<td id="iridescent" title="iridescent" {% if "iridescent" in hum.colors %}class="selected"{% endif %}>
+							</td>
+						</tr>
+					</table>
+				</td>			
+			</tr>
+		</table>
+		<input type="submit" value="Submit" />
+	</form>
+	<span>{% for color in color_output %}{{color}},{% endfor %}</span>
+{% endblock %}

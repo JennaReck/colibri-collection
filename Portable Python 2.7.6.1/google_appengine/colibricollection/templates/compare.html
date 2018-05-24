@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block content %} 
+	
+	<form action="/compare" method="GET">
+		<div class="compare-dropdown-container">
+			Hummingbird #1:
+			<br />
+			<select name="humid1">
+				{% for hum in hum_list %}
+					<option value="{{ hum.key.id() }}" 
+						{% if humid1 == hum.key.id() %}
+							selected="selected"
+						{% endif %}>
+						{{hum.common_name}}
+					</option>
+				{% endfor %}
+			</select>
+		</div>
+		<div class="compare-dropdown-container">
+			Hummingbird #2:
+			<br />
+			<select name="humid2">
+				{% for hum in hum_list %}
+					<option value="{{ hum.key.id() }}" 
+						{% if humid2 == hum.key.id() %}
+							selected="selected"
+						{% endif %}>
+						{{hum.common_name}}
+					</option>
+				{% endfor %}
+			</select>
+		</div>
+		<div class="compare-dropdown-container">
+			<input type="submit" value="Compare">
+		</div>
+	</form>
+	<div class="main-headers">Compare Species<div class="main-headers-right-link main-links">{% if scale_ratio %}
+			(<a href="/calibrate" class="main-links" title="Your screen is currently calibrated.">reset/test screen calibration?</a>)
+		{% else %}
+			(<a href="/calibrate" class="main-links" title="Your screen is currently not calibrated. For true scaled pictures, please calibrate your screen.">set screen calibration</a>)
+		{% endif %}</div></div>
+	{% if hum1 %}
+		<div class="species-scaled-containers" style="width:{% if scale_ratio %}{{hum1.scale_pics[0].scale_size * scale_ratio + 40}}{% else %}{{hum1.scale_pics[0].scale_size + 40}}{% endif %}px;">
+			<a href="{{hum1.link}}"><img src="{{hum1.scale_pics[0].link}}" class="scale-pics" width="{% if scale_ratio %}{{hum1.scale_pics[0].scale_size * scale_ratio}}{% else %}{{hum1.scale_pics[0].scale_size}}{% endif %}px" alt="{{hum1.scale_pics[0].title}}" title="{{hum1.scale_pics[0].title}}" /></a>
+			<div class="center compare-info">
+				{{hum1.scale_pics[0].title}}
+			</div>
+			<div class="center compare-info">
+				{% if hum1.scale_pics[0].male %}Male length{% else %}Female length{% endif %}: {% if hum1.scale_pics[0].male %}{{hum1.male_length}}{% else %}{{hum1.female_length}}{% endif %} inches
+			</div>
+			<div class="center main-links compare-info">(<a href="{{hum1.scale_pics[0].source}}" class="main-links">source</a>)</div>
+		</div>
+	{% endif %}
+	{% if hum2 %}
+		<div class="species-scaled-containers" style="width:{% if scale_ratio %}{{hum2.scale_pics[0].scale_size * scale_ratio + 40}}{% else %}{{hum2.scale_pics[0].scale_size + 40}}{% endif %}px;">
+			<a href="{{hum2.link}}"><img src="{{hum2.scale_pics[0].link}}" class="scale-pics" width="{% if scale_ratio %}{{hum2.scale_pics[0].scale_size * scale_ratio}}{% else %}{{hum2.scale_pics[0].scale_size}}{% endif %}px" alt="{{hum2.scale_pics[0].title}}" title="{{hum2.scale_pics[0].title}}" /></a>
+			<div class="center compare-info">
+				{{hum2.scale_pics[0].title}}
+			</div>
+			<div class="center compare-info">
+				{% if hum2.scale_pics[0].male %}Male length{% else %}Female length{% endif %}: {% if hum2.scale_pics[0].male %}{{hum2.male_length}}{% else %}{{hum2.female_length}}{% endif %} inches
+			</div>
+			<div class="center main-links compare-info">(<a href="{{hum2.scale_pics[0].source}}" class="main-links">source</a>)</div>
+		</div>
+	{% endif %}
+	<br>
+	{% if hum1 %}
+		<div class="species-scaled-containers" style="width:{% if scale_ratio %}{{hum1.scale_pics[1].scale_size * scale_ratio + 40}}{% else %}{{hum1.scale_pics[1].scale_size + 40}}{% endif %}px;">
+			<a href="{{hum1.link}}"><img src="{{hum1.scale_pics[1].link}}" class="scale-pics" width="{% if scale_ratio %}{{hum1.scale_pics[1].scale_size * scale_ratio}}{% else %}{{hum1.scale_pics[1].scale_size}}{% endif %}px" alt="{{hum1.scale_pics[1].title}}" title="{{hum1.scale_pics[1].title}}" /></a>
+			<div class="center compare-info">
+				{{hum1.scale_pics[1].title}}
+			</div>
+			<div class="center compare-info">
+				{% if hum1.scale_pics[1].male %}Male length{% else %}Female length{% endif %}: {% if hum1.scale_pics[1].male %}{{hum1.male_length}}{% else %}{{hum1.female_length}}{% endif %} inches
+			</div>
+			<div class="center main-links compare-info">(<a href="{{hum1.scale_pics[1].source}}" class="main-links">source</a>)</div>
+		</div>
+	{% endif %}
+	{% if hum2 %}
+		<div class="species-scaled-containers" style="width:{% if scale_ratio %}{{hum2.scale_pics[1].scale_size * scale_ratio + 40}}{% else %}{{hum2.scale_pics[1].scale_size + 40}}{% endif %}px;">
+			<a href="{{hum2.link}}"><img src="{{hum2.scale_pics[1].link}}" class="scale-pics" width="{% if scale_ratio %}{{hum2.scale_pics[1].scale_size * scale_ratio}}{% else %}{{hum2.scale_pics[1].scale_size}}{% endif %}px" alt="{{hum2.scale_pics[1].title}}" title="{{hum2.scale_pics[1].title}}" /></a>
+			<div class="center compare-info">
+				{{hum2.scale_pics[1].title}}
+			</div>
+			<div class="center compare-info">
+				{% if hum2.scale_pics[1].male %}Male length{% else %}Female length{% endif %}: {% if hum2.scale_pics[1].male %}{{hum2.male_length}}{% else %}{{hum2.female_length}}{% endif %} inches
+			</div>
+			<div class="center main-links compare-info">(<a href="{{hum2.scale_pics[1].source}}" class="main-links">source</a>)</div>
+		</div>
+	{% endif %}
+	{% if not hum1 and not hum2 %}
+		<div class="center">
+			Please select two hummingbirds to compare.
+		</div>
+	{% endif %}
+	
+	<div class="center main-links{% if not hum1 and not hum2 %} hidden{% endif %}">
+		{% if scale_ratio %}
+			(<a href="/calibrate" class="main-links" title="Your screen is currently calibrated.">reset/test screen calibration?</a>)
+		{% else %}
+			(<a href="/calibrate" class="main-links" title="Your screen is currently not calibrated. For true scaled pictures, please calibrate your screen.">set screen calibration</a>)
+		{% endif %}
+	</div>
+{% endblock %}

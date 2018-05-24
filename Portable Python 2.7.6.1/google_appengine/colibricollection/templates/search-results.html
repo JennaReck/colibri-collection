@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %} 
+	{% if not query %}
+		<div class="main-headers">Search for Species</div>
+		<form action="/search" method="POST">
+			<div class="center">
+				<input id="search-main-searchbar" name="q" type="text">
+				<input type="submit" value="Search">
+			</div>
+		</form>
+	{% else %}
+		<div class="main-headers">{{result_num}} results for {{query}}</div>
+		{{content_html|safe}}
+		
+		
+		
+	{% endif %}
+
+{% endblock %}
+
+{% block pagination%}
+	{{pagination|safe}}
+{% endblock %}
